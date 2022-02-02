@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+  <link rel="stylesheet" href="/stylesheets/main.css" />
+</head>
+
+<body>
+  <div class="container">
+    <%- include('../partials/header.ejs', {role: role}) %>
+    <div class="inner-container">
+        <h1 style="text-align: center;">SIGN UP</h1>
+        <% if (messages.error) { %>
+        <p style="text-align: center; color: red;"><%= messages.error %></p>
+        <% } %>
+        <form action="/register" method="POST">
+          <div class="form-row">
+            <div class="form-login">
+              <input type="name" name="name" placeholder="Name" value='<%= messages.name %>'>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-login">
+              <input type="surname" name="surname" placeholder="Surname" value='<%= messages.surname %>'>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-login">
+              <input type="address" name="address" placeholder="Address" value='<%= messages.address %>'>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-login">
+              <input type="email" name="email" placeholder="Email" value='<%= messages.email %>'>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-login">
+              <input type="password" name="password" placeholder="Password" value='<%= messages.password %>'>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-login">
+              <button style="margin:auto;" class="btn btn-primary">Sign Up</button>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-login">
+              <!-- <button style="margin:auto;" class="btn btn-danger"><a style="text-decoration: none; color:var(--color-btn-danger-text);"href="/login">Cancel</a></button> -->
+              <a style="margin:auto;" class="btn btn-danger" type="button"style="text-decoration: none; color:var(--color-btn-danger-text);"href="/login">Cancel</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

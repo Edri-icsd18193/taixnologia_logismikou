@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+  <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
+  <script defer src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+  <script defer src="https://unpkg.com/filepond-plugin-file-encode/dist/filepond-plugin-file-encode.js"></script>
+  <script defer src="https://unpkg.com/filepond-plugin-image-resize/dist/filepond-plugin-image-resize.js"></script>
+  <script defer src="https://unpkg.com/filepond/dist/filepond.js"></script>
+  <script defer src="/javascripts/fileUpload.js"></script>
+  <link id="main-css" rel="stylesheet" href="/stylesheets/main.css">
+  <title>DVD STORE</title>
+</head>
+
+<body>
+  <div class="container">
+    <%- include('../partials/header.ejs', {role: role}) %>
+    <h2 class="page-header"><%= dvd.title %><a type="button" style="padding: 0.3rem 0.8rem; float: right; margin-right: 6rem;"
+        class="btn btn-danger" href="/dvds">back</a></h2>
+    <div class="book-details">
+      <div>
+        <img style="margin-right: 1.1rem;" class="book-cover" src="<%= dvd.coverImagePath %>">
+        <% if(role == "Admin") {%>
+        <div class="book-details-btn-grid">
+          <a class="btn btn-primary" href="/dvds/<%= dvd.id %>/edit">Edit</a>
+          <%- include('../partials/deleteForm', { url: `/dvds/${dvd.id}` }) %>
+        </div>
+        <% } %>
+      </div>
+      <div class="book-details-grid">
+        <div class="book-details-label">Actors:</div>
+        <div><%= dvd.actors %></div>
+        <div class="book-details-label">Publish Date:</div>
+        <div><%= dvd.publishDate.toDateString() %></div>
+        <div class="book-details-label">Duration:</div>
+        <div><%= dvd.duration %></div>
+        <div class="book-details-label">Category:</div>
+        <div><%= dvd.category %></div>
+        <div class="book-details-label">In Stock:</div>
+        <div><%= dvd.inStock %></div>
+        <div class="book-details-label">Price:</div>
+        <div style="align-self: center; display: flex;"><%= dvd.price %> €
+          <% if(role == "User") {%>
+          <form style="margin-left: 3rem;" method="POST" action="/pelates/orders/<%= dvd.id %>">
+            <input type="number" name="amount" step="1" min="1" max="<%= dvd.inStock %>" value="1" size="2" />
+            <button class="btn btn-danger" type="submit"
+              style="padding: 0.1rem 0.2rem; font-size: 0.8rem;">Order</button>
+          </form>
+          <% } %>
+        </div>
+      </div>
+    </div>
+</body>
+
+</html>

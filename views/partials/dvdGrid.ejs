@@ -1,0 +1,9 @@
+<% bookCoverClass = locals.large ? 'book-cover-large' : '' %>
+<% bookGridClass = locals.large ? 'book-grid-large' : '' %>
+<div class="book-grid <%= bookGridClass %>">
+    <% dvds.forEach(dvd => { %>
+    <a href="/dvds/<%= dvd.id %>">
+        <img class="book-cover <%= bookCoverClass %>" src="<%= dvd.coverImagePath %>">
+    </a>
+    <% }) %>
+</div>

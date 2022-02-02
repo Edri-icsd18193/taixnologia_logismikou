@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link id="main-css" rel="stylesheet" href="/stylesheets/main.css">
+</head>
+
+<body>
+    <div class="container">
+        <%- include('../partials/header.ejs', {role: role}) %>
+        <div class="inner-container">
+            <% if(tab == "orders") {%>
+            <h2 class="page-header">My Orders<a type="button" style="float: right; margin-right: 6rem;"
+                    class="btn orderbtn btn-primary" href="/pelates/history">History</a></h2>
+            <% } else{ %>
+            <h2 class="page-header">My History<a type="button" style="float: right; margin-right: 6rem;"
+                    class="btn orderbtn btn-primary" href="/pelates/orders">Orders</a></h2>
+            <% } %>
+            <% if (messages) { %>
+            <p style="text-align: center; color: red;"><%= messages.error %></p>
+            <% } %>
+            <div class="orders">
+                <% if (orders == null || orders.length == 0) { %>
+                <% if(tab == "orders") {%>
+                    <div style="text-align: center; margin-top: 14rem;">No Orders Found </div>
+                <% } else{ %>
+                    <div style="text-align: center; margin-top: 14rem;">No History Found </div>
+                <% } %>
+                <%} else { orders.forEach(order => { %>
+                <div class="order">
+                    <div style="display: inline-block;">
+                        <% if(order.state == 0) {%>
+                        <div class="text-color green">Created</div>
+                        <% } else if(order.state == 1){ %>
+                        <div class="text-color green">Charged</div>
+                        <% } else if(order.state == 2 || order.state == 6){ %>
+                        <div class="text-color red">Canceled</div>
+                        <% } else if(order.state == 3){ %>
+                        <div class="text-color orange">Pending</div>
+                        <% } else if(order.state == 4){ %>
+                        <div class="text-color blue">Arrived</div>
+                        <% } %>
+                        <div style="font-size: 1.3rem;"><%= order.dvd.title %> x<%= order.amount %></div>
+                        <div style="font-size: .7rem; font-weight: 100;"><%= order.description %></div>
+                    </div>
+                    <div style="float: right;">
+                        <% if(order.state == 2 || order.state == 6 || order.state == 4) {%>
+                        <form style="float: right;" method="POST"
+                            action="/pelates/orders/<%= order._id %>?_method=DELETE">
+                            <button class="btn orderbtn btn-danger">Delete</button>
+                        </form>
+                        <% } else if(order.state == 0){%>
+                        <form style="float: right;" method="POST" action="/pelates/orders/cancel/<%= order._id %>">
+                            <button class="btn orderbtn btn-danger">Cancel</button>
+                        </form>
+                        <% } else {%>
+                        <form style="float: right;" method="POST"
+                            action="/pelates/orders/cancel/<%= order._id %>?_method=PUT">
+                            <button class="btn orderbtn btn-danger">Cancel</button>
+                        </form>
+                        <% } %>
+                        <form style="float: right;" method="GET" action="/pelates/orders/view/<%= order._id %>">
+                            <button class="btn orderbtn btn-primary">View</button>
+                        </form>
+                    </div>
+                </div>
+                <% }) } %>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

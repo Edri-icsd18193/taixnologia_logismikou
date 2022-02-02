@@ -1,0 +1,26 @@
+<header>
+  <nav class="header-nav">
+    <a class="header-title" href="/">DVD STORE</a>
+    <ul>
+      <% if(role == "User") { %>
+      <li><a href="/pelates/dashboard">Profile</a></li>
+      <li><a href="/pelates/my_cards">My Cards</a></li>
+      <li><a href="/pelates/orders">My Orders</a></li>
+      <li><a href="/dvds">DVDs</a></li>
+      <% } if(role == "Admin") { %>
+      <li><a href="/admin/customer_orders">Orders</a></li>
+      <li><a href="/dvds">DVDs</a></li>
+      <li><a href="/dvds/new">Add DVD</a></li>
+      <% } if(role == undefined || role == "" || role == "Guest") { %>
+      <li><a href="/dvds">DVDs</a></li>
+      <li><a href="/login">Login</a></li>
+      <% } if(role == "User" || role == "Admin") { %>
+      <li>
+        <form action="/logout?_method=DELETE" method="POST">
+          <button type="submit"><span>LOGOUT</span></button>
+        </form>
+      </li>
+      <% } %>
+    </ul>
+  </nav>
+</header>

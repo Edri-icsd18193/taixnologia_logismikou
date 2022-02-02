@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link id="main-css" rel="stylesheet" href="/stylesheets/main.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <%- include('../partials/header.ejs', {role: role}) %>
+        <div class="inner-container">
+            <h2 class="page-header">Credit Cards<a style="float: right; margin-right: 6rem;" class="btn btn-primary"
+                    type="button" href="/pelates/new_card">Add Card</a>
+            </h2>
+            <div class="orders">
+                <% if (cards == null || cards.length == 0) { %>
+                <div style="text-align: center; margin-top: 14rem;">No Cards Found</div>
+                <%} else { cards.forEach(card => { %>
+                <div class="order">
+                    <div style="display: inline-block;">
+                        <% if(card.activated == true) {%>
+                        <div class="text-color green">Active</div>
+                        <% } else { %>
+                        <div class="text-color red">Frozen</div>
+                        <% } %>
+                        <div style="font-size: 1.3rem;"><%= card.name %></div>
+                        <div style="font-size: .7rem; font-weight: 100;">
+                            <%= card.pelatis.name %><%= card.pelatis.surname %>
+                        </div>
+                    </div>
+                    <form style="float: right;" method="GET" action="/pelates/my_cards/<%= card.id %>">
+                        <button class="btn orderbtn btn-primary">Edit</button>
+                    </form>
+                </div>
+                <% }) } %>
+            </div>
+</body>

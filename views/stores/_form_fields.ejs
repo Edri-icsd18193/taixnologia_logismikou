@@ -1,0 +1,57 @@
+<div class="form-row">
+  <div class="form-item">
+    <label>Title</label>
+    <input type="text" name="title" value="<%= stock.dvd.title %>">
+  </div>
+  <div class="form-item">
+    <label>Actors</label>
+    <input type="text" name="actors" value="<%= stock.dvd.actors %>">
+  </div>
+</div>
+
+<div class="form-row">
+  <div class="form-item">
+    <label>Director</label>
+    <input type="text" name="director" value="<%= stock.dvd.director %>">
+  </div>
+  <div class="form-item">
+    <label>Publish Date</label>
+    <input type="date" name="publishDate"
+      value="<%= stock.dvd.publishDate == null ? '' : stock.dvd.publishDate.toISOString().split('T')[0] %>">
+  </div>
+</div>
+
+<div class="form-row">
+  <div class="form-item">
+    <label>Duration</label>
+    <input type="number" name="duration" min="1" value="<%= stock.dvd.duration %>">
+  </div>
+  <div class="form-item form-item-no-grow">
+    <label>Cover</label>
+    <input type="file" name="cover" class="dvd-cover filepond">
+  </div>
+</div>
+<div class="form-row">
+  <div class="form-item">
+    <label>Category</label>
+    <input type="text" name="category" value="<%= stock.dvd.category %>">
+  </div>
+  <div class="form-item">
+    <label>Dubs</label>
+    <input type="text" name="dubs" value="<%= stock.dvd.dubs %>">
+  </div>
+  <div class="form-item">
+    <label>Subtitles</label>
+    <input type="text" name="subtitles" value="<%= stock.dvd.subtitles %>">
+  </div>
+</div>
+<div class="form-row">
+  <div class="form-item">
+    <label>In Stock</label>
+    <input type="text" name="inStock" value="<%= stock.inStock %>">
+  </div>
+  <div class="form-item">
+    <label>Price</label>
+    <input type="text" name="inStock" value="<%= stock.price %>">
+  </div>
+</div>

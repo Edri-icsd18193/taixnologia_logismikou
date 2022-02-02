@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+  <link id="main-css" rel="stylesheet" href="/stylesheets/main.css">
+</head>
+
+<body>
+  <div class="container">
+    <%- include('../partials/header.ejs', {role: role}) %>
+    <div class="inner-container">
+        <h1 style="text-align: center;">SIGN IN TO YOUR ACCOUNT</h1>
+        <% if (messages) { %>
+        <p style="text-align: center; color: red;"><%= messages.error %></p>
+        <% } %>
+        <form action="/login" method="POST">
+          <div class="form-row">
+            <div class="form-login">
+              <input type="email" name="email" placeholder="Email" /><!-- johnnythedesigner@gmail.com -->
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-login">
+              <input type="password" name="password" placeholder="Password" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-login">
+              <button style="margin:auto;" class="btn btn-primary">SIGN IN</button>
+            </div>
+          </div>
+          <div class="register">or<br><a href="/register">Register</a></div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link id="main-css" rel="stylesheet" href="/stylesheets/main.css">
+</head>
+
+<body>
+    <div class="container">
+        <%- include('../partials/header.ejs', {role: role}) %>
+        <div class="inner-container" style="text-align: center;">
+            <h2 class="page-header" style="margin-bottom: 1rem;">Order Details</h2>
+            <div class="text">Customer Name:</div>
+            <div class="text text-1"><%= order.pelatis.name %> <%= order.pelatis.surname %></div>
+            <br>
+            <div class="text">DVD Title:</div>
+            <div class="text text-1"><%= order.dvd.title %></div>
+            <br>
+            <div class="text">DVD Price:</div>
+            <div class="text text-1"><%= order.dvd.price %>€</div>
+            <br>
+            <div class="text">Amount:</div>
+            <div class="text text-1"><%= order.amount %></div>
+            <br>
+            <div class="text">Total Price:</div>
+            <div class="text text-1"><%= (order.amount*order.dvd.price).toFixed(2) %>€</div>
+            <br>
+            <div class="text">Description:</div>
+            <div class="text text-1"><%= order.description%></div>
+            <br>
+            <a type="button" class="btn orderbtn back btn-danger" href="/admin/customer_orders">Back</a>
+        </div>
+    </div>
+</body>
+
+</html>
