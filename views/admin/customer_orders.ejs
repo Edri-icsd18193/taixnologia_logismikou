@@ -41,7 +41,7 @@
                         <% if(order.state == 0) {%>
                         <form style="float: right;" method="POST"
                             action="/admin/customer_orders/<%= order._id %>?_method=DELETE">
-                            <button class="btn orderbtn btn-danger">Delete</button>
+                            <button class="btn orderbtn btn-danger">Decline</button>
                         </form>
                         <form style="float: right;" method="POST"
                             action="/admin/customer_orders/charge/<%= order._id %>?_method=PUT">

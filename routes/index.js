@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router()
-const Book = require('../models/book')
 const DVD = require('../models/dvd')
 
 router.get('/', async (req, res) => {

@@ -9,7 +9,6 @@ const dvd = require('../models/dvd')
 // Show Cards Route
 router.get('/my_cards/:id', async (req, res) => {
   try {
-    console.log("Test");
     const card = await CreditCard.findById(req.params.id).populate("pelatis")
     if (req.user.id != card.pelatis.id) {
       res.redirect('/');

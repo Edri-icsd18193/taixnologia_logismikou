@@ -19,8 +19,6 @@ const {
 
 // ------------Routers-----------------
 const indexRouter = require('./routes/index')
-const authorRouter = require('./routes/authors')
-const bookRouter = require('./routes/books')
 const dvdRouter = require('./routes/dvds')
 const pelatisRouter = require('./routes/pelates')
 const adminRouter = require('./routes/admin')
@@ -87,13 +85,10 @@ db.once('open', () => console.log('Connected to Mongoose'))
 //---------------------------End Mongoose-------------------------------
 
 // app.use('/', indexRouter)
-app.use('/authors', authorRouter)
-app.use('/books', bookRouter)
 app.use('/dvds', dvdRouter)
 app.use('/Pelates', pelatisRouter, checkNotAuthenticated)
 app.use('/admin', adminRouter)
 
-const Book = require('./models/book')
 app.get('/', async (req, res) => {
   let query = DVD.find()
   if (req.query.title != null && req.query.title != '') {
@@ -126,7 +121,6 @@ app.post("/login", checkNotAuthenticated, passport.authenticate("local", {
   failureRedirect: "/login",
   failureFlash: true,
 }), (req, res) => {
-  console.log("email:"+req.user.email)
   if(req.user.email=="admin@gmail.com"){
     req.session.role = "Admin";
   }else{

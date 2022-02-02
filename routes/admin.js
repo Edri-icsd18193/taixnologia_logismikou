@@ -115,7 +115,6 @@ router.put('/customer_orders/charge/:id', async (req, res) => {
             order.state = 2;
             order.description = "Not Enough DVDs In Stock!!";
         } else {
-            console.log("Order Final");
 
             await CreditCard.updateOne({
                 _id: check_credit_card_amount.id

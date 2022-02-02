@@ -78,7 +78,6 @@ router.get('/:id/edit', async (req, res) => {
             res.redirect('/');
             return;
         }
-        console.log("test edit");
         const dvd = await DVD.findById(req.params.id).exec()
         renderEditPage(req, res, dvd)
     } catch {
@@ -144,7 +143,6 @@ async function renderNewPage(req, res, dvd, hasError = false) {
 }
 
 async function renderEditPage(req, res, dvd, hasError = false) {
-    console.log("RemderEditPage");
     renderFormPage(req, res, dvd, 'edit', hasError)
 }
 
@@ -161,7 +159,6 @@ async function renderFormPage(req, res, dvd, form, hasError = false) {
                 params.errorMessage = 'Error Creating DVD'
             }
         }
-        console.log("Seee");
         res.render(`dvds/${form}`, params)
     } catch {
         res.redirect('/dvds')

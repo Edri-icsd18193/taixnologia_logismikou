@@ -58,7 +58,6 @@ router.get('/:id', async (req, res) => {
 // Edit DVD Route
 router.get('/:id/edit', async (req, res) => {
     try {
-        console.log("test edit");
         const stock = await Stock.findById(req.params.id).exec()
         renderEditPage(req, res, stock)
     } catch {
@@ -111,7 +110,6 @@ async function renderNewPage(req, res, stock, hasError = false) {
 }
 
 async function renderEditPage(req, res, stock, hasError = false) {
-    console.log("RemderEditPage");
     renderFormPage(req, res, stock, 'edit', hasError)
 }
 
@@ -128,7 +126,6 @@ async function renderFormPage(req, res, stock, form, hasError = false) {
                 params.errorMessage = 'Error Creating Stock'
             }
         }
-        console.log("Seee");
         res.render(`stores/${form}`, params)
     } catch {
         res.redirect('/stores')
